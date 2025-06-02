@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Digital Diary</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container" style="max-width: 500px; margin-top: 100px;">
+        <h1>🔐 Login</h1>
+
+        <div class="nav-links">
+            <a href="/">🏠 Back to Home</a>
+            <a href="{% url 'landing' %}">📖 Landing Page</a>
+        </div>
+
+        {% if form.errors %}
+            <div class="alert alert-error">
+                ❌ Invalid username or password. Please try again.
+            </div>
+        {% endif %}
+
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+
+            <label for="id_username">👤 Username</label>
+            {{ form.username }}
+
+            <label for="id_password">🔒 Password</label>
+            {{ form.password }}
+
+            <button type="submit">🚀 Login</button>
+        </form>
+
+        <div style="text-align: center; margin-top: 30px; padding: 20px; background: rgba(255,255,255,0.8); border-radius: 12px;">
+            <p>Don't have an account? Contact your administrator.</p>
+            <p style="font-size: 0.9em; color: #666;">Secure login powered by Django authentication</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Digital Diary</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>DiaryCraft</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            <textarea name="hints" rows="5" placeholder="Enter today's hints here..."></textarea><br>
+            <button type="submit">Generate Diary Entry</button>
+        </form>
+
+        {% if generated_entry %}
+            <div class="new-entry">
+                <h2>🆕 Today's Diary</h2>
+                <p>{{ generated_entry }}</p>
+            </div>
+        {% endif %}
+
+        <h2>📅 Past Diary Entries</h2>
+        {% for entry in all_entries %}
+            <div class="entry-card">
+                <div class="entry-date">🗓 {{ entry.date_created|date:"F j, Y - l" }}</div>
+                <div class="entry-hints"><em><u>Hints:</u></em><br> {{ entry.hints }}</div>
+                <div class="entry-diary"><em><u>Diary:</u></em><br> {{ entry.entry }}</div>
+            </div>
+        {% empty %}
+            <p>No past entries yet.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

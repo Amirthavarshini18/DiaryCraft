@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diary History - Digital Diary</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Your Diary History</h1>
+
+        <div class="nav-links">
+            <a href="/">🏠 Back to Home</a>
+            <a href="{% url 'home' %}">✏️ Write New Entry</a>
+        </div>
+
+        <h2>📖 All Your Entries</h2>
+
+        {% for entry in entries %}
+            <div class="entry-card">
+                <div class="entry-date">🗓 {{ entry.date|date:"F j, Y - l" }}</div>
+                <div class="entry-diary">
+                    <p>{{ entry.formatted_entry }}</p>
+                </div>
+            </div>
+        {% empty %}
+            <div style="text-align: center; padding: 50px; background: rgba(255,255,255,0.8); border-radius: 15px;">
+                <h3>📝 No entries yet!</h3>
+                <p>Start writing your first diary entry to see it here.</p>
+                <div class="nav-links">
+                    <a href="/">✨ Create Your First Entry</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

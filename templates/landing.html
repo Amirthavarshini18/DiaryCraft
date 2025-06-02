@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Digital Diary</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-section">
+            <h1>📖 Digital Diary</h1>
+            <p>Securely write, generate, and revisit your daily thoughts with AI assistance.</p>
+            <p>Transform your daily hints into beautiful diary entries using advanced AI technology.</p>
+
+            <div class="nav-links">
+                <a href="{% url 'login' %}">🔐 Login to Get Started</a>
+                <a href="/">📝 Try Demo</a>
+            </div>
+
+            <div style="margin-top: 40px; padding: 30px; background: rgba(255,255,255,0.8); border-radius: 15px;">
+                <h3>✨ Features</h3>
+                <p>🤖 AI-powered diary generation</p>
+                <p>📅 Automatic date tracking</p>
+                <p>💾 Secure storage of your memories</p>
+                <p>📱 Beautiful, responsive design</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
